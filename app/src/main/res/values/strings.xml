@@ -25,5 +25,14 @@
     <string name="choose_image">Choose Images</string>
     <string name="gallery_photos">Gallery/Photos</string>
     <string name="camera">Camera</string>
+    <string name="ok">OK</string>
+    <string name="deny">Deny</string>
+    <string name="allow">Allow</string>
+    <string name="to_get_going_we_need_to_access">To get going, we need to access</string>
+    <string name="phone_and_storage">" \u2022 PHONE and STORAGE"</string>
+    <string name="camera_permission">" \u2022 CAMERA"</string>
+    <string name="security_experience">To pick images and files from file manager</string>
+    <string name="external_storage_permission">External storage permission is necessary</string>
+    <string name="camera_permission_message">For ensuring uploading of Images and videos from your phone gallery</string>
 
 </resources>

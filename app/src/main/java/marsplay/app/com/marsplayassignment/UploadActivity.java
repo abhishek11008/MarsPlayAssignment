@@ -126,6 +126,7 @@ public class UploadActivity extends ListActivity {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
 
+
         // Initializes TransferUtility, always do this before using it.
         util = new Util();
         transferUtility = util.getTransferUtility(this);
@@ -164,7 +165,6 @@ public class UploadActivity extends ListActivity {
         TransferListener listener = new UploadListener();
         for (TransferObserver observer : observers) {
             observer.refresh();
-
             // For each transfer we will will create an entry in
             // transferRecordMaps which will display
             // as a single row in the UI
@@ -475,7 +475,7 @@ public class UploadActivity extends ListActivity {
             //get the returned data
             Bundle extras = data.getExtras();
             //get the cropped bitmap
-            Bitmap thePic = (Bitmap) extras.get("uriString");
+            Bitmap thePic = (Bitmap) extras.get("data");
 
 
             // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
@@ -687,20 +687,10 @@ public class UploadActivity extends ListActivity {
     }
 
     private void pickFromGallery() {
-        Intent intent = new Intent();
-        if (Build.VERSION.SDK_INT >= 19) {
-            // For Android versions of KitKat or later, we use a
-            // different intent to ensure
-            // we can get the file path from the returned intent URI
-            intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-        } else {
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-        }
-
-        intent.setType("image/*");
-        startActivityForResult(intent, UPLOAD_REQUEST_CODE);
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        // Start the Intent
+        startActivityForResult(galleryIntent, UPLOAD_REQUEST_CODE);
     }
 
     /**
@@ -717,7 +707,7 @@ public class UploadActivity extends ListActivity {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, CAMERA);*/
         try {
-           /* Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            /*Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             String imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
             File imageFile = new File(imageFilePath);
             picUri = Uri.fromFile(imageFile); // convert path to Uri

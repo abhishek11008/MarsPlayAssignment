@@ -43,4 +43,7 @@ public class Constants {
      */
     //public static final String BUCKET_REGION = "CHANGE_ME";
     public static final String BUCKET_REGION = "us-west-2";
+
+    public static final int PERMISSION_REQUEST_GRANT = 1;
+
 }
